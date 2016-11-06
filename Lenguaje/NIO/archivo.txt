@@ -1,3 +1,2 @@
-Este es un archivo de texto
-que me servira para mis pruebas 
-con java NIO.
+Este es el header del archivo
+Este es el body del archivo
