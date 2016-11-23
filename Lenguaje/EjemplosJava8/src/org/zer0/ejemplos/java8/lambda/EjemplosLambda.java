@@ -9,8 +9,12 @@ public class EjemplosLambda {
 	public static void main(String[] args) {
 		EjemplosLambda ejemplos=new EjemplosLambda();
 		//ejemplos.ejemploForma();
-		ejemplos.ejemploForEach();
+		//ejemplos.ejemploForEach();
 		//ejemplos.llamadaEstatica_UnParametro_SinRetorno();
+		//ejemplos.llamadaEstatica_DosParametro_SinRetorno();
+		//ejemplos.llamadaEstatica_DosParametro_ConRetorno();
+		//ejemplos.pruebaLlamadaATipo();
+		ejemplos.pruebaLlamadaInstanciaObjetoExistente();
 	}
 	
 	public void ejemploForma(){
@@ -38,7 +42,7 @@ public class EjemplosLambda {
 		milista.add("Diego");
 		milista.add("Titov");
 		
-		Collections.sort(milista,(String n,String m)->{return n.compareTo(m);});
+		Collections.sort(milista,(String n,String m)->{return n.compareTo(m);});//ordenando
 		
 		milista.forEach((String nombre)->System.out.println(nombre));
 	}
@@ -72,8 +76,31 @@ public class EjemplosLambda {
 	}
 	
 	public void llamadaEstatica_DosParametro_SinRetorno(){
-		ILlamadaDosParametrosSinRetorno llamada=Actividad::realizarActividadEstatica;
-		llamada.llamar("joseph");
+		ILlamadaDosParametrosSinRetorno llamada=Actividad::realizarActividadEstaticaDosParams;
+		llamada.llamar("joseph","cesar");
+	}
+	
+	public void llamadaEstatica_DosParametro_ConRetorno(){
+		ILlamadaDosParametrosConRetorno llamada=Actividad::realizarActividadEstaticaDosParamsConReturn;
+		String retorno=llamada.llamar("joseph","cesar");
+		System.out.println("-->"+retorno);
+	}
+	
+	public void pruebaLlamadaATipo(){
+		//IInstanciaSegunTipo llamada=(ElTipo tipo,String operacion)->{tipo.realizarOperacion(operacion);}; // Sin referencias
+		IInstanciaSegunTipo llamada=ElTipo::realizarOperacion;// Da la sensacion de que se tratase de un metodo estatico pero no lo es.
+		llamada.llamar(new ElTipo(), "depositar");
+	}
+	
+	private void metodo(String parametro){
+		System.out.println("dato:"+parametro);
+	}
+	
+	public void pruebaLlamadaInstanciaObjetoExistente(){
+		//IInstanciaObjetoExistente llamada=(String parametro)->{this.metodo(parametro);}; Sin referencias
+		IInstanciaObjetoExistente llamada=this::metodo;
+		
+		llamada.llamar("nro de telefono");
 	}
 	
 	
