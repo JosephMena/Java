@@ -12,10 +12,10 @@ import java.io.FileReader;
 //Este interfaz es padre del interfaz java.io.Closeable del que heredan todos los recursos de entrada y salida.
 //El método close() es que se invoca para el cierra todos los recursos incluidos en la cabecera de la sentencia try, 
 //llamándose automáticamente una vez finalizado el bloque try o después de producirse una excepción.
-public class Recursos {
+public class RecursosAutoclosable {
 
 	public static void main(String[] args) {
-		Recursos recursos=new Recursos();
+		RecursosAutoclosable recursos=new RecursosAutoclosable();
 		recursos.pruebaRecursos();
 	}
 	
