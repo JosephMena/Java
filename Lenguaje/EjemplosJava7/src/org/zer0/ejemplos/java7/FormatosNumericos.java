@@ -7,7 +7,6 @@ public class FormatosNumericos {
 		FormatosNumericos formatos=new FormatosNumericos();
 		formatos.numeroBinario();
 		formatos.literalEnteroSubrayado();
-		
 	}
 	
 	public void numeroBinario(){
