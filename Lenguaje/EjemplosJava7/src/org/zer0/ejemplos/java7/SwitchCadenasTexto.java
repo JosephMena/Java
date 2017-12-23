@@ -1,9 +1,9 @@
 package org.zer0.ejemplos.java7;
 
-public class CadenasTexto {
+public class SwitchCadenasTexto {
 
 	public static void main(String[] args) {
-		CadenasTexto cadenas=new CadenasTexto();
+		SwitchCadenasTexto cadenas=new SwitchCadenasTexto();
 		cadenas._switch();
 	}
 
