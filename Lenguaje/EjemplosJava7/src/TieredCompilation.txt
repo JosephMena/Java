@@ -1,0 +1,40 @@
+Client, Server, and Tiered Compilation
+------------------
+
+There are two basic types of Just-In-Time Java compilers: Client and Server. Traditionally, the Client and the Server compilers are called C1 and C2 respectively.
+
+The main difference between the Client and the Server compilers is the aggressiveness in the way they compile code. The Client compiler is optimized to make an application start up faster, whereas the Server compiler gives better performance in the long run. As you might have guessed, the Client compiler is dedicated to any type of client application (usually GUI-based), whereas the Server compiler is designed for long-running server side applications.
+
+Why is the Server compiler faster eventually? It’s because the Server compiler observes and analyzes the code for a longer period of time, and that knowledge allows the Server compiler to make better optimizations in the compiled code. On the contrary, the Client compiler tries to optimize and compile code as soon as possible, which lowers the start-up time.
+
+The obvious question you might ask is whether it’s possible to make a mix of both the Client and Server compilers to have both fast startup and as good performance as possible in the long run? The answer is yes. We've had it since Java 7, and it’s called Tiered compilation.
+
+Tiered Compilation:
+With Tiered compilation, the Client compiler is used at the beginning to make startup fast, then, when the code becomes hot and profile data is collected, it is recompiled by the Server compiler.
+
+Even though there are only two basic compilers (+ interpreter) in Java, there are five levels of execution, because the Client compiler (C1) has three different levels of compilation and the Server compiler (C2) has only one.
+
+Level 0 – interpreted code
+
+Level 1 – simple C1 compiled code (with no profiling)
+
+Level 2 – limited C1 compiled code (with light profiling)
+
+Level 3 – full C1 compiled code (with full profiling)
+
+Level 4 – C2 compiled code (uses profile data from the previous steps)
+
+The usual path is 0 -> 3 -> 4, so the code is interpreted first, then, when it gets hot enough, it’s compiled by C1 with full profiling enabled and, finally, C2 compiles the code using profile data collected by C1.
+
+But there are three exceptions.
+
+The Method Is Simple
+If the method to be compiled is trivial, then it is compiled only at level 1 (C1 without profiling) because the Server compiler wouldn’t make it faster – there is no point in doing extensive profiling to find out how the code is used if it can be made fast without it.
+
+C2 Is Busy
+If at some point the Server compiler queue gets full, the method will be taken from the Server queue and compiled at level 2 (with light profiling, which compiles the method sooner). After some time, the code will be compiled at level 3 (with full profiling) and finally, when the Server queue is less busy, it will be compiled by the Server compiler (again, using profile data collected at level 3).
+
+C1 Is Busy, but C2 Is Not
+If the C1 queue is full, but the C2 queue is not, then the method can be profiled by the interpreter (level 0) and then it can go directly to C2 (so the Client compiler is not involved at all).
+
+It is worth mentioning that compiler queues are not standard FIFO, but priority ones. In Java 8, Tiered compilation is enabled by default.
