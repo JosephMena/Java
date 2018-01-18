@@ -1,4 +1,4 @@
-package org.zer0.ejemplos.java7;
+package org.zer0.ejemplos.java7.basico;
 
 public class ThrowPreciso {
 
