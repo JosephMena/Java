@@ -1,4 +1,4 @@
-package org.zer0.ejemplos.java7;
+package org.zer0.ejemplos.java7.trywithresources;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -12,10 +12,10 @@ import java.io.FileReader;
 //Este interfaz es padre del interfaz java.io.Closeable del que heredan todos los recursos de entrada y salida.
 //El método close() es que se invoca para el cierra todos los recursos incluidos en la cabecera de la sentencia try, 
 //llamándose automáticamente una vez finalizado el bloque try o después de producirse una excepción.
-public class RecursosAutoclosable {
+public class RecursosAutoclosableBasico {
 
 	public static void main(String[] args) {
-		RecursosAutoclosable recursos=new RecursosAutoclosable();
+		RecursosAutoclosableBasico recursos=new RecursosAutoclosableBasico();
 		recursos.pruebaRecursos();
 	}
 	

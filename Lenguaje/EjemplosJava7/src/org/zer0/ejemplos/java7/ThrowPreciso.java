@@ -1,6 +1,6 @@
 package org.zer0.ejemplos.java7;
 
-public class ExcepcionesThrow {
+public class ThrowPreciso {
 
 	// En la version 6 de java este codigo hubiera arrojado la un error de compilacion, indicandonos que no se esta controlando la excepcion
 	// Exception
