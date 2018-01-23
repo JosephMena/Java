@@ -1,0 +1,17 @@
+TransferQueue:
+
+- 1 Producer - 0 Consumer:
+	En el Ejemplo001 se muestra el ejemplo de 1 productor y 0 consumidores, en este ejemplo se puede apreciar el uso del metodo transfer,
+	este metodo esperara(se bloqueara) hasta que un consumidor realice un take sobre el trasfer queue.
+	
+	En el Ejemplo002 se muestra el ejemplo de 1 productor y 0 consumires pero usando el metodo tryTransfer, el cual bloqueara la transferencia
+	por un determiado tiempo configurable si es que no se ha podido transmitir al consumidor el item,una vez pasado este tiempo el metodo
+	tryTransfer devolvera falso si se dio un timeout(no lanza excepcion) y no se pudo transferir el item.
+	Nota: el metodo tryTransfer espera que exista al menos un consumidor para mandar el item a la cola. 
+	
+	En el ejemplo003 se puede apreciar como el metodo put, permite ingresar items a la cola sin necesidad de un consumidor. 
+	
+- 1 Producer - 1 Consumer:
+	
+	
+
