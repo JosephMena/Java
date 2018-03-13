@@ -4,7 +4,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TransferQueue;
 import java.util.concurrent.atomic.AtomicInteger;
 
-public class Producer1 implements Runnable{
+public class Producer01 implements Runnable{
 
 	private TransferQueue<String> transferQueue;
 	  
@@ -12,7 +12,7 @@ public class Producer1 implements Runnable{
   
     private Integer numberOfMessagesToProduce;
   
-    public Producer1(TransferQueue<String> transferQueue, String name, Integer numberOfMessagesToProduce) {
+    public Producer01(TransferQueue<String> transferQueue, String name, Integer numberOfMessagesToProduce) {
 		super();
 		this.transferQueue = transferQueue;
 		this.name = name;

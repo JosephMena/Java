@@ -11,7 +11,28 @@ TransferQueue:
 	
 	En el ejemplo003 se puede apreciar como el metodo put, permite ingresar items a la cola sin necesidad de un consumidor. 
 	
+- 0 Producer - 1 Consumer:
+	En el Ejemplo004 se puede apreciar este caso, en esta ocasion el Consumidor se queda bloqueado cuando ejecuta el metodo take, si no se 
+	encuentra ningun item en la cola no saldra del bloqueo.
+	
+- Puts - 1 Consumer:
+	En el Ejemplo005 se puede apreciar como inicialmente son ingresados varios items a la loca mediante put, y como el take del consumidor
+	obtienen los elementos de la cola sin bloquearse pues la cola tiene elementos.
+	
 - 1 Producer - 1 Consumer:
+
+	En el Ejemplo006 se puede apreciar el uso de transfer y take con solo 1 consumidor y 1 productor.
+	
+- 1 Producer - Varios Consumers:
+
+	
+	
+	
+	
+	
+	
+	
+		
 	
 	
 
