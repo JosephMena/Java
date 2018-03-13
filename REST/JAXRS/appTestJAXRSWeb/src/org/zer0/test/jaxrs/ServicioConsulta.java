@@ -29,7 +29,6 @@ public class ServicioConsulta extends Application {
     @Path("jwt")
     public Response echoWithJWTToken(@QueryParam("message") String message) {
         return Response.ok().entity(message == null ? "no message" : message).build();
-        
     }
 
 	@GET
@@ -38,7 +37,6 @@ public class ServicioConsulta extends Application {
 	@SAASecurity
 	public List<String> getSampleData(@Context HttpHeaders headers,@QueryParam("value") String value) {
 		return Arrays.asList(new String[] { "one", "two", "three", "four", value });
-		
 	}
 
 	@GET
