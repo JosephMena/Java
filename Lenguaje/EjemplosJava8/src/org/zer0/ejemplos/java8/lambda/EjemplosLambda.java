@@ -2,6 +2,8 @@ package org.zer0.ejemplos.java8.lambda;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.function.Consumer;
 
 public class EjemplosLambda {
 
@@ -25,8 +27,8 @@ public class EjemplosLambda {
 		milista.add("Arturo");
 		milista.add("Diego");
 		milista.add("Titov");
-		
-		Collections.sort(milista,(String n,String m)->{System.out.println("aa");return 2;});
+		//Comparator<T>
+		Collections.sort(milista,(String n,String m)->{System.out.println("aa");return 1;});
 		
 		for (String string : milista) {
 			System.out.println("->"+string);
@@ -43,7 +45,7 @@ public class EjemplosLambda {
 		milista.add("Titov");
 		
 		Collections.sort(milista,(String n,String m)->{return n.compareTo(m);});//ordenando
-		
+		//Consumer<T>
 		milista.forEach((String nombre)->System.out.println(nombre));
 	}
 	

@@ -6,4 +6,8 @@ public interface IInstanciaObjetoExistente {
 	
 	public void llamar(String parametro);
 	
+	public default String   operacionDos() {
+		return "";
+	}
+	
 }

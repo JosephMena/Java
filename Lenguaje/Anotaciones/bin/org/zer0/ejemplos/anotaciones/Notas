@@ -1,0 +1,46 @@
+- Minimamente a la anotacion debe registrarse con @interface
+- Cualquier propiedad de una anotacion debe ser public o no debe tener ambito. 
+- Se puede asignar un valor por defecto con el keyword default seguido del valor, cuando se hace eso ya no es obligatorio en el uso.
+- Se tiene la anotacion:
+	public @interface AnotacionSimple1 {
+		public String value();
+	....
+	
+	Cuando la propiedad es value entonces el compilador java no obliga a poner: 
+	
+		@AnotacionBasica(value="valor")
+		public class Entidad {
+	
+	Si no simplemente se puede poner:
+		@AnotacionBasica("valor")
+		public class Entidad {
+
+	Es el unico caso donde pasa ello.
+	
+- 	
+
+@Retention:
+	
+	RetentionPolicy.SOURCE: 
+		- Discard during the compile. These annotations don't make any sense after the compile has completed, so they aren't written to the bytecode.
+		- No aparecen en el codigo decompilado.
+			Example: @Override, @SuppressWarnings
+
+	RetentionPolicy.CLASS: (por default) 
+		- Discard during class load. Useful when doing bytecode-level post-processing. Somewhat surprisingly, this is the default.
+		- Aparecen en el codigo decompilado pero no pueden ser inspeccionados en tiempo de ejecucion, no son retornados por reflection con getAnnotations().
+						
+	RetentionPolicy.RUNTIME: 
+		- Do not discard. The annotation should be available for reflection at runtime.
+		- Aparecen en el codigo decompilado y puede ser inspeccionados con reflection.
+
+@Target:
+	ElementType.ANNOTATION_TYPE  -> Solo se puede usar la anotacion en interfaces anotaciones.
+	ElementType.CONSTRUCTOR
+	ElementType.FIELD
+	ElementType.LOCAL_VARIABLE
+	ElementType.METHOD
+	ElementType.PACKAGE
+	ElementType.PARAMETER
+	ElementType.TYPE			-> Se puede usar en cualquier caso, class, interface, annotation, etc.
+	
