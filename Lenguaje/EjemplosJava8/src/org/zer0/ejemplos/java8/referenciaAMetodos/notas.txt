@@ -1,0 +1,6 @@
+Referencia a Metodos:
+-------------------
+
+
+Para utilizar referencia a metodos se necesita si o si de una interfaz funcional, como ya hemos visto la interfaz funcional no necesiaramente debe estar anotada con @FunctionalInterface si no que 
+puede tener simplemente un metodo abstracto. 

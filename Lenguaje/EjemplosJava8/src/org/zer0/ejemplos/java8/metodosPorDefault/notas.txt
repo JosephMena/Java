@@ -1,0 +1,10 @@
+Metodos por defecto
+-----------------
+
+Esta mejora se ha implementado para todas las interfaces Java y se da por la siguiente razon:
+
+Cuando se tiene un proyecto donde se tiene una interfaz definida y muchas(para el ejemplo) clases que implementan dicha interfaz, si se da el caso que deseamos que la interfaz tenga
+un metodo abstracto adicional, entonces antes de Java 8 se tenia que realizar la implementacion, aveces sin codigo, en cada una de las clases que implementara dicha interfaz.
+Pero desde Java 8 ha cambiado la figura, ahora ya no es necesario que todas las clases implementen este nuevo metodo si no que se le puede proporcionar a las clases implementadas
+con una implementacion por defecto de dicho metodo, asi cada clase que quiera una implementacion personalizada de  dicho metodo solo tendra que sobreescribirlo.
+

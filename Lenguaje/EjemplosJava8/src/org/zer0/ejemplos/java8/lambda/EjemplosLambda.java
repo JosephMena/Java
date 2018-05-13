@@ -2,8 +2,6 @@ package org.zer0.ejemplos.java8.lambda;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
-import java.util.function.Consumer;
 
 public class EjemplosLambda {
 

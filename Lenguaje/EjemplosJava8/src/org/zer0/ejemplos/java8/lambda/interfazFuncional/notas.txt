@@ -1,0 +1,15 @@
+@FunctionalInterface
+
+Las interfaces funcionales son solo un contrato, donde la implementacion en si se da cuando se "instancia" mediante una expresion lambda.
+
+Es decir las interfaces funcionales trabajan de la mano con las expresiones lambda.
+
+Las interfaces funcionales se marcan con esta anotacion, pero lamba tambien podria operar sin que la interfaz este marcada con esta anotacion, pero por motivos de ser explicitos se 
+recomienda marcar la interfaz con esta anotacion, no vaya a ser que alguien no se de cuenta de que esta interfaz sirve para estos propositos y empiece a añadir mas metodos abstractos,
+cuando una interfaz funcional solo puede tener un metodo abstracto y no mas.
+
+Se recomienda no usar mucho los metodos default en una interfaz funcional puesto que si se desea emplear herencia de interfaces funcionales, estas(los metodos default) podrian acarrear problemas.
+
+URLs:
+https://medium.freecodecamp.org/learn-these-4-things-and-working-with-lambda-expressions-b0ab36e0fffc
+https://dzone.com/articles/lambda-expression-in-java8
