@@ -1,0 +1,63 @@
+Optional
+--------
+
+El uso de Optional esta centrado en eliminar los problemas ocasioados por el uso de null y por lo tanto de los NullPointerExcepction, por ejemplo si tenemos el siguiente codigo:
+
+public class ServicioPersonas {
+     
+    static List<Persona> lista= new ArrayList<Persona>();
+    static {
+        lista.add(new Persona("angel"));
+        lista.add(new Persona("ana"));
+    }
+     
+     
+    public Persona buscar(String nombre) {
+         for (Persona p:lista) {
+             if (p.getNombre().equals(nombre)) {
+                 return p;
+             }
+         }
+         return null;
+    }
+}
+
+Y la siguiente llamda:
+
+	public static void main(String[] args) {
+        ServicioPersonas sp= new ServicioPersonas();
+        Persona p=sp.buscar("gema");
+        System.out.println(p.getNombre());
+         
+    }
+
+En ella se puede apreciar que si ponemos genma en buscar arrojara un error ya que genma no existe en la lista, esto mismo puede pasar en casos donde trabajamos con cientos o miles de registros y 
+durante nuestras pruebas no aparece ningun error, entonces el uso de Optional se vuelve importante, pues Optional nos obliga a hacer las validaciones respectivas.
+
+Por eje el caso anterior quedaria asi:
+
+public Optional<Persona> buscar(String nombre) {
+         
+         for (Persona p:lista) {
+             if (p.getNombre()==nombre) {
+                 return  Optional.of(p);
+             }
+         }
+         return Optional.empty();
+} 
+    
+Optional<Persona> op=sp.buscar("gema");
+if (op.isPresent()) {
+	System.out.println(op.get().getNombre());
+}else { 
+	System.out.println("no hay registros");
+}
+
+
+Notas:
+	Se recomienda usar orElseGet en lugar de orElse, ref [1].
+	
+
+URLs:
+-----
+	[1] http://www.baeldung.com/java-optional
