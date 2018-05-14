@@ -1,0 +1,19 @@
+Streams
+------
+
+En Stream existen operaciones intermedias o terminales, cuando una operacion es intermedia quiere decir que devuelve un Stream y se puede seguir operando en cadena, pero si una
+operacion es terminal quiere decir que en esa operacion acaba el stream con void o devuelve un resultado.
+
+Ejemplos de operaciones intermedias son:
+filter, map, sorted
+
+Ejemplo de operaionces terminales son:
+forEach
+collect
+
+Nota: 
+	- Cuando se usa streams las operaciones realizadas con esta no modifican o alteran la lista original.
+	
+
+URLs:
+http://winterbe.com/posts/2014/07/31/java8-stream-tutorial-examples/
