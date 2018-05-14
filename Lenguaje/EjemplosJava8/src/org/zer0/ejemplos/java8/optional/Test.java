@@ -2,6 +2,8 @@ package org.zer0.ejemplos.java8.optional;
 
 import java.util.Optional;
 
+import org.zer0.ejemplo.java8.util.Persona;
+
 public class Test {
 
 	public static void main(String[] args) {
@@ -10,6 +12,8 @@ public class Test {
 		test.creandoOptionalDesdeObjeto();
 		test.creandoOptionalDesdeObjeto2();
 		test.metodoOrElse();
+		test.metodoFilter();
+		test.metodoMap();
 	}
 	
 	public void creandoOptionalVacio() {
@@ -38,6 +42,23 @@ public class Test {
 		System.out.println("orElse valor 1:"+Optional.ofNullable(null).orElse("joseph por defecto!"));
 		System.out.println("orElse valor 2:"+Optional.ofNullable("IPzer0").orElse("joseph por defecto!"));
 	}
+	
+	//El metodo filter se puede tomar para una evaluacion condicional if ya que el filter recibe un Predicate.
+	public void metodoFilter() {
+		Optional<Integer> anioPruebaOptional=Optional.of(1984);
+		if(anioPruebaOptional.filter(anio->anio>1980).isPresent()) {
+			System.out.println("mas joven que yo");
+		}
+	}
+	
+	//Ademas sobre un Optional tambien se pueden aplicar otras operaciones como map, el cual develve un Optional
+	//En este caso el map se usa para extraer un valor
+	public void metodoMap() {
+		Optional<Persona> op=Optional.ofNullable(new Persona("mena", 51));
+		System.out.println(op.map(Persona::getNombre).filter((nombre)->{return nombre.equals("mena");}).isPresent());
+	}
+	
+	
 	
 	
 }
