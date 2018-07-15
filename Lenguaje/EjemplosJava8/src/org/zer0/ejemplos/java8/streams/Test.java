@@ -26,7 +26,7 @@ public class Test {
 		listaFinal.forEach(System.out::println);
 	}
 	
-	//La operacion .map recibe una Function, donde una funcion recibe un parametro y devuelve un valor.
+	//Map recibe una Function, donde una funcion recibe un parametro y devuelve un valor.
 	//Esta operacion se realiza sobre todos los elementos del stream.
 	 
 	private void operacionMap() {
@@ -42,11 +42,15 @@ public class Test {
 		personas.stream()
 				.map(Persona::getNombre).forEach(System.out::println);;
 	}
+
+	//	
+	private void operacionFlatMap() {
+		
+	}
 	
 	private void operacionFindFirst() {
 		Stream<String> flujo=Stream.of("joseph","cesar","mena","sihuacollo");
 		flujo.findFirst();
-		
 	}
 	
 }

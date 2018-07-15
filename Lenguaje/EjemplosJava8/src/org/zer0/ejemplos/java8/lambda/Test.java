@@ -3,11 +3,11 @@ package org.zer0.ejemplos.java8.lambda;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class EjemplosLambda {
+public class Test {
 
 	
 	public static void main(String[] args) {
-		EjemplosLambda ejemplos=new EjemplosLambda();
+		Test ejemplos=new Test();
 		//ejemplos.ejemploForma();
 		//ejemplos.ejemploForEach();
 		//ejemplos.llamadaEstatica_UnParametro_SinRetorno();

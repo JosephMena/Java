@@ -34,10 +34,13 @@ public class Test {
 		//Es decir su firma lamba es: (T t)->{}
 		//Donde lo que esta entre {} determina que accion se realizara.
 		//Pero cuando hacemos metodo de instancia por referencia arbitraria
-		//lo que va dentro del forEarch es la referencia a un metodo, lo que hace java internamente es algo confuso pero se puede determinar.
-		//Por ejemplo en este caso impimirMiNombre no tiene parametros, esta es la parte confusa.
-		//Pero el no tener parametros es lo que hace posible este caso ( si no pediria que sea estatico como el Persona::imprimirMiNombre3 o no se podria ejecutar como el imprimirMiNombre2) 
-		//En este caso imprimirMiNombre es un metodo de instancia, y opera sobre cada instancia de la lista lstPersonas.
+		//lo que va dentro del forEarch es la referencia a un metodo, lo que hace java internamente 
+		//es algo confuso pero se puede determinar. Por ejemplo en este caso impimirMiNombre no tiene 
+		//parametros, esta es la parte confusa.
+		//Pero el no tener parametros es lo que hace posible este caso ( si no pediria que sea estatico 
+		//como el Persona::imprimirMiNombre3 o no se podria ejecutar como el imprimirMiNombre2) 
+		//En este caso imprimirMiNombre es un metodo de instancia, y opera sobre cada instancia de la 
+		//lista lstPersonas.
 		//Tratar de relacionar esto con como funciona lamba es complicado.
 	}
 	
@@ -62,7 +65,7 @@ public class Test {
 	
 	public void metodoNew() {
 		Supplier<Persona> usu= Persona::new;
-		//Construye un objeto de tipo usuario que es devuelto por método get();
+		//Construye un objeto de tipo usuario que es devuelto por mï¿½todo get();
 		Persona usuario=usu.get();
 	}
 }

@@ -35,14 +35,14 @@
 		- Aparecen en el codigo decompilado y puede ser inspeccionados con reflection.
 
 @Target:
-	ElementType.ANNOTATION_TYPE  -> Solo se puede usar la anotacion en interfaces anotaciones.
-	ElementType.CONSTRUCTOR
-	ElementType.FIELD
-	ElementType.LOCAL_VARIABLE
-	ElementType.METHOD
-	ElementType.PACKAGE
-	ElementType.PARAMETER
-	ElementType.TYPE			-> Se puede usar en cualquier caso, class, interface, annotation, etc.
+	ElementType.ANNOTATION_TYPE  -> Solo se puede usar la anotacion en interfaces del tipo anotacion.
+	ElementType.CONSTRUCTOR		 -> 
+	ElementType.FIELD			 -> 
+	ElementType.LOCAL_VARIABLE	 -> 
+	ElementType.METHOD			 -> 
+	ElementType.PACKAGE			 -> 
+	ElementType.PARAMETER		 -> 
+	ElementType.TYPE			 -> Se puede usar en cualquier caso, class, interface, annotation, etc.
 	
 	
 	

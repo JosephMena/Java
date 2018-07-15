@@ -1,22 +1,40 @@
 @FunctionalInterface
 ------------------
 
-Las interfaces funcionales son solo un contrato, donde la implementacion en si se da cuando se "instancia" mediante una expresion lambda.
+	Las interfaces funcionales son solo un contrato, donde la implementacion en si se da cuando se 
+	"instancia" mediante una expresion lambda.
+	
+	Es decir las interfaces funcionales trabajan de la mano con las expresiones lambda.
+	
+	Las interfaces funcionales se marcan con esta anotacion, pero lamba tambien podria operar sin que 
+	la interfaz este marcada con esta anotacion, pero por motivos de ser explicitos se recomienda marcar
+	la interfaz con esta anotacion, no vaya a ser que alguien no se de cuenta de que esta interfaz sirve
+	para estos propositos y empiece a aÃ±adir mas metodos abstractos, una interfaz funcional solo puede
+	tener un metodo abstracto y no mas.
+	
+	Se recomienda no usar mucho los metodos default en una interfaz funcional puesto que si se desea
+	emplear herencia de interfaces funcionales, estas(los metodos default) podrian acarrear problemas.
 
-Es decir las interfaces funcionales trabajan de la mano con las expresiones lambda.
-
-Las interfaces funcionales se marcan con esta anotacion, pero lamba tambien podria operar sin que la interfaz este marcada con esta anotacion, pero por motivos de ser explicitos se 
-recomienda marcar la interfaz con esta anotacion, no vaya a ser que alguien no se de cuenta de que esta interfaz sirve para estos propositos y empiece a añadir mas metodos abstractos,
-cuando una interfaz funcional solo puede tener un metodo abstracto y no mas.
-
-Se recomienda no usar mucho los metodos default en una interfaz funcional puesto que si se desea emplear herencia de interfaces funcionales, estas(los metodos default) podrian acarrear problemas.
 
 Supplier:
---------
-Es una clase de interfaz funcional que no toma argumentos,esta diseñado integramente para la generacion de valores. 
 
+	Es una clase de interfaz funcional que no toma argumentos,esta diseÃ±ado integramente para 
+	la generacion de valores.
+	
+Consumer:
+	Sirve como su nombre indica para consumir, es decir recibe un parametro y no devuelve un valor.
+
+Predicate:
+	Utilizado como filtro, dado un parametro devuelve un valor booleano.
+		
+Function:
+	Function<S,R>, recibe un parametro (S) y devuelve un valor (R), en este caso el valor devuelto puede
+	ser de otro tipo.
+	
+BiFunction:
+	Function<S,S,R> recibe dos paramtros (S) y devuelve un valor (R), R puede ser de otro tipo.	
 
 URLs:
-https://medium.freecodecamp.org/learn-these-4-things-and-working-with-lambda-expressions-b0ab36e0fffc
-https://dzone.com/articles/lambda-expression-in-java8
-http://www.baeldung.com/java-8-functional-interfaces
+	https://medium.freecodecamp.org/learn-these-4-things-and-working-with-lambda-expressions-b0ab36e0fffc
+	https://dzone.com/articles/lambda-expression-in-java8
+	http://www.baeldung.com/java-8-functional-interfaces
