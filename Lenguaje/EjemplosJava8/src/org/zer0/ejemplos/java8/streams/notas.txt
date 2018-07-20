@@ -12,7 +12,16 @@ Streams
 	
 	Ejemplo de operaionces terminales son:
 		- forEach
+		- findFirst
 		- collect
+
+
+	Existen ademas de los Streams orientados a clases, los streams de primitivos, ejemplo: 
+		IntStream, DoubleStream, LongStream
+	Estos stream tienen operaciones adicionales como por ejemplo: average, sum, max.
+	
+	
+
 
 Notas: 
 	- Cuando se usa streams las operaciones realizadas con esta no modifican o alteran la lista
