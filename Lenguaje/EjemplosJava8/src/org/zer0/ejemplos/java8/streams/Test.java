@@ -25,7 +25,9 @@ public class Test {
 		//test.operacionNoneMatch();
 		//test.operacionCollectToMapList();
 		//test.operacionCollectToMap();
-		test.operacionCollectToMap2();
+		//test.operacionCollectToMap2();
+		//test.operacionReduce();
+		test.operacionReduce2();
 	}
 
 	//Filter permite que dado una lista, se filtre solo algunos de los elementos de la lista
@@ -150,6 +152,20 @@ public class Test {
 		mapa.forEach((k,v)->{
 			System.out.println("___Nombres que empiezan con:"+k+" -v:"+v);
 		});
+	}
+	
+	private void operacionReduce() {
+		Stream<String> flujo=Stream.of("Joseph","Pedro","Sihuacollo","Martin","Paul","Pantro");
+		flujo.reduce(
+				(n1,n2)->n1+","+n2
+				).ifPresent(System.out::println);;
+	}
+	
+	private void operacionReduce2() {
+		IntStream flujo=Arrays.stream(new int[] {1,4,6,8,2,20,6,10});
+		flujo.reduce(
+				(n1,n2)->{return n1>n2?n1:n2;}
+				).ifPresent(System.out::println);;
 	}
 }
 
