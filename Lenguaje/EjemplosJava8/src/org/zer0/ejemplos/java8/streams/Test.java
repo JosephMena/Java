@@ -1,8 +1,8 @@
 package org.zer0.ejemplos.java8.streams;
 
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.OptionalDouble;
 import java.util.stream.Collectors;
@@ -21,7 +21,11 @@ public class Test {
 		//test.operacionFindFirst();
 		//test.operacionAnyMatch();
 		//test.intStream();
-		test.operacionSorted();
+		//test.operacionSorted2();
+		//test.operacionNoneMatch();
+		//test.operacionCollectToMapList();
+		//test.operacionCollectToMap();
+		test.operacionCollectToMap2();
 	}
 
 	//Filter permite que dado una lista, se filtre solo algunos de los elementos de la lista
@@ -56,6 +60,26 @@ public class Test {
 		
 	}
 	
+	private void operacionSorted() {
+		Stream<String> array=Arrays.stream(new String[]{"Paul","Erik","Joseph","Cesar","Teodomiro"});
+		array.sorted().forEach(System.out::println);
+	}
+	
+	private void operacionSorted2() {
+		Stream<String> array=Arrays.stream(new String[]{"Paul","Erik","Joseph","Cesar","Teodomiro"});
+		array.sorted(String::compareTo).forEach(System.out::println);
+		
+	}
+	
+	private void intStream() {
+		IntStream stream=Arrays.stream(new int[] {1,2,4,6,2});
+		OptionalDouble op=stream.average();
+		System.out.println(op.getAsDouble());
+	}
+	
+	//---------------------------Terminales------------------------
+	//-------------------------------------------------------------
+	
 	private void operacionFindFirst() {
 		Stream<String> flujo=Stream.of("joseph","cesar","mena","sihuacollo");
 		Optional<String> elemento=flujo.findFirst();
@@ -69,21 +93,63 @@ public class Test {
 		System.out.println(contienePeru);
 	}
 	
-	private void intStream() {
-		IntStream stream=Arrays.stream(new int[] {1,2,4,6,2});
-		OptionalDouble op=stream.average();
-		System.out.println(op.getAsDouble());
+	private void operacionNoneMatch() {
+		Stream<String> flujo=Stream.of("Joseph","Mena","Sihuacollo","Cesar");
+		boolean contieneZ=flujo.noneMatch(nombre->{return nombre.contains("z");});
+		System.out.println("Ninguno contiene z? "+contieneZ);
 	}
 	
-	private void operacionSorted() {
-		Stream<String> array=Arrays.stream(new String[]{"Paul","Erik","Joseph","Cesar","Teodomiro"});
-		array.sorted().forEach(System.out::println);
+	private void operacionCollectToList() {
+		Stream<String> flujo=Stream.of("Joseph","Mena","Sihuacollo","Paul");
+		List<String> lista=flujo.collect(Collectors.toList());
 	}
 	
-	private void operacionSorted2() {
-		Stream<String> array=Arrays.stream(new String[]{"Paul","Erik","Joseph","Cesar","Teodomiro"});
-		array.sorted().forEach(System.out::println);
+	private void operacionCollectToMapList() {
+		Stream<String> flujo=Stream.of("Joseph","Mena","Sihuacollo","Jorge","Martin");
+		Map<String,List<String>> mapa=flujo.collect(
+										Collectors.groupingBy(
+												nombre->String.valueOf(nombre.charAt(0))
+												)
+									);
 		
+		mapa.forEach((k,v)->{
+			System.out.println("___Nombres que empiezan con:"+k);
+			v.forEach(System.out::println);
+		});
+	}
+	
+	private void operacionCollectJoining() {
+		Stream<String> flujo=Stream.of("Joseph","Mena","Sihuacollo","Jorge","Martin");
+		String cadena=flujo.collect(Collectors.joining(","));
+		System.out.println(cadena);
+	}
+	
+	//Si se lanza este metodo, se arrojara una excepcion,ello se debe a que el toMap de dos parametros
+	//lanza una excepcion cuando el key se encuentra mas de 1 vez:ej (P)aul y (P)edro
+	//en su lugar usar el toMap de 3 parametros
+	private void operacionCollectToMap() {
+		Stream<String> flujo=Stream.of("Joseph","Pedro","Sihuacollo","Martin","Paul");
+		Map<String,String> mapa=flujo.collect(Collectors.toMap(
+					nombre->String.valueOf(nombre.charAt(0)),
+					nombre->nombre
+				));
+		mapa.forEach((k,v)->{
+			System.out.println("___Nombres que empiezan con:"+k+" -v:"+v);
+		});
+	}
+	
+	// Como se puede apreciar a diferencia del toMap con 2 parametros, en este caso se le pasa una funcion
+	//lambda que sirve como merge.
+	private void operacionCollectToMap2() {
+		Stream<String> flujo=Stream.of("Joseph","Pedro","Sihuacollo","Martin","Paul","Pantro");
+		Map<String,String> mapa=flujo.collect(Collectors.toMap(
+					nombre->String.valueOf(nombre.charAt(0)),
+					nombre->nombre,
+					(a,b)->a+","+b
+				));
+		mapa.forEach((k,v)->{
+			System.out.println("___Nombres que empiezan con:"+k+" -v:"+v);
+		});
 	}
 }
 
