@@ -1,0 +1,28 @@
+Executor Service:
+======
+
+Esta interface nos permite representar un mecanismo de ejecucion asincrona, la cual es capaz de ejecutar tareas en background. Un Executor Service es asi, muy similar a un Thread Pool. De hecho
+la implementacion de ExecutorService presente en el paquete java.util.concurrent es una implementacion Thread Pool.
+
+Existen varias implementaciones del Executor Service, por ejemplo:
+
+	ThreadPoolExecutor
+	ScheduledThreadPoolExecutor
+
+Varias de ellas pueden ser creadas mediante el factory method de la interfaz Executors, por ejemplo:
+
+	ExecutorService executorService1 = Executors.newSingleThreadExecutor();
+
+	ExecutorService executorService2 = Executors.newFixedThreadPool(10);
+
+	ExecutorService executorService3 = Executors.newScheduledThreadPool(10);
+
+
+Ejemplos:
+
+	En el ejemplo02 se muestra como crea un ExecutorService de forma directa.
+	
+
+
+
+
