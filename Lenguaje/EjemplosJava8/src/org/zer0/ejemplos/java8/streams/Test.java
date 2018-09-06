@@ -105,7 +105,11 @@ public class Test {
 		stream.skip(2).forEach(System.out::println);;
 	}
 	
-	
+	//Esta operacion no altera el flujo, recibe como para un Consumidor el cual ejecutara una accion sobre los elementos del stream*, recordar que se tiene que tomar en cuenta
+	//la operacion terminal que se ejecute sobre el stream pues esta determinara como se ejecutara peek, si sobre todos los elementos o parte de ellos. [5]
+	private void operacionPeek() {
+		Stream<Integer> flujo=lstNumeros.stream();
+	}
 	
 	//---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	//---------------------------Terminales--------------------------------------------------------------------------------------------------------------------------------------------------
@@ -146,6 +150,12 @@ public class Test {
 		System.out.println("Ninguno contiene z? "+contieneZ);
 	}
 	
+	
+	
+	
+	
+	
+	
 	private void operacionCollectToList() {
 		Stream<String> flujo=Stream.of("Joseph","Mena","Sihuacollo","Paul");
 		List<String> lista=flujo.collect(Collectors.toList());
@@ -164,6 +174,7 @@ public class Test {
 			v.forEach(System.out::println);
 		});
 	}
+	
 	
 	private void operacionCollectJoining() {
 		Stream<String> flujo=Stream.of("Joseph","Mena","Sihuacollo","Jorge","Martin");
@@ -208,7 +219,8 @@ public class Test {
 		Stream<String> flujo=Stream.of("Joseph","Pedro","Sihuacollo","Martin","Paul","Pantro");
 		flujo.reduce(
 					(n1,n2)->n1+","+n2
-				).ifPresent(System.out::println);;
+				)
+			 .ifPresent(System.out::println);;
 	}
 	
 	//En este ejemplo se encuentra el maximo valor
@@ -216,7 +228,8 @@ public class Test {
 		IntStream flujo=Arrays.stream(new int[] {1,4,6,8,2,20,6,10});
 		flujo.reduce(
 				(n1,n2)->{return n1>n2?n1:n2;}
-				).ifPresent(System.out::println);;
+				)
+			 .ifPresent(System.out::println);;
 	}
 	
 	//En este ejemplo se encuentra el maximo valor
@@ -225,9 +238,7 @@ public class Test {
 		flujo.reduce(Integer::max).ifPresent(System.out::println);;
 	}
 	
-	private void operacionPeek() {
-		Stream<Integer> flujo=lstNumeros.stream();
-	}
+	
 }
 
 
