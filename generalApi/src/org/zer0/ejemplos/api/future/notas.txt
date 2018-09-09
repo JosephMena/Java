@@ -1,0 +1,5 @@
+Future:
+======
+
+API disponible desde Java 1.5, util para trabajar procesos asincronos y concurrencia.
+

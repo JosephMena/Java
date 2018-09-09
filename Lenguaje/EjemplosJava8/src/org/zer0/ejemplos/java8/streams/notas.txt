@@ -26,7 +26,9 @@ Streams
 Notas: 
 	- Cuando se usa streams las operaciones realizadas con esta no modifican o alteran la lista
 	  original.
-	
+	- Un stream codificado con un pipeline se ejecutara recien cuando se ejecute la operacion terminal.
+	- De [4], los streams solo pueden ser usados una vez y no reusados, el stream se cierra cuando se usa una operacion terminal sobre ella, una forma de manejar
+	  esto es usando un Supplier de Stream
 	
 	
 	
@@ -35,3 +37,4 @@ URLs:
 	[1] http://winterbe.com/posts/2014/07/31/java8-stream-tutorial-examples/
 	[2] http://www.baeldung.com/java-difference-map-and-flatmap
 	[3] https://www.ibm.com/developerworks/library/j-java-streams-2-brian-goetz/index.html
+	[4]	https://www.baeldung.com/java-stream-operated-upon-or-closed-exception
