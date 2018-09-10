@@ -10,7 +10,7 @@ public class Procesar {
 	// Por ejemplo, se puede tener una serie de fases que solo use una instancia de Phaser:
 	// Fase 1: Compuesta por 3 tareas (hilos)
 	// Fase 2: Compuesta por 4 tareas. 
-	// Condicion: la condicion a cumplir para que la fase se sigua es: Cuando el numero de tareas arrived (arriveAndAwaitAdvance) sea igual   
+	// Condicion: la condicion a cumplir para que la fase se siga es: Cuando el numero de tareas arrived (arriveAndAwaitAdvance) sea igual   
 	// al numero tareas registradas (register), la ejecucion del programa continua, cuando se da esta situacion el phase number 
 	// se incrementara: getPhase() 
 	// Para que se pueda controlar el trabajo mediante fases se recomienda la siguiente practica:
