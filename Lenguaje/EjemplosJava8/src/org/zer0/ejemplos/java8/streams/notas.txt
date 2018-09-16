@@ -10,7 +10,7 @@ Streams
 		- map
 		- sorted
 	
-	Ejemplo de operaionces terminales son:
+	Ejemplo de operaciones terminales son:
 		- forEach
 		- findFirst
 		- collect
@@ -29,7 +29,8 @@ Notas:
 	- Un stream codificado con un pipeline se ejecutara recien cuando se ejecute la operacion terminal.
 	- De [4], los streams solo pueden ser usados una vez y no reusados, el stream se cierra cuando se usa una operacion terminal sobre ella, una forma de manejar
 	  esto es usando un Supplier de Stream
-	
+	- La operacion terminal determina si se procesaran la totalidad o parte de los elementos del Stream.
+	- En streams infinitos se necesita setear un limite para poder operar sobre el, mayormente se usa limit [6]
 	
 	
 
@@ -38,3 +39,5 @@ URLs:
 	[2] http://www.baeldung.com/java-difference-map-and-flatmap
 	[3] https://www.ibm.com/developerworks/library/j-java-streams-2-brian-goetz/index.html
 	[4]	https://www.baeldung.com/java-stream-operated-upon-or-closed-exception
+	[5] https://stackoverflow.com/questions/33635717/in-java-streams-is-peek-really-only-for-debugging
+	[6] https://stackify.com/streams-guide-java-8/

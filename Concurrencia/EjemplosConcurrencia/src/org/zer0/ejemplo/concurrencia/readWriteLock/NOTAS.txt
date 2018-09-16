@@ -1,0 +1,48 @@
+ReadWriteLock:
+-------------
+
+	ReentrantLock es una interface del paquete java.util.concurrent.locks que permite el uso avanzados mecanismos de bloqueo. Este permite a multiple hilos leer cierto recurso,
+	pero solo a 1 Hilo escribir, en un determinado tiempo.
+	
+	La idea es, que multiples hilos puedan leer desde un recurso compartido sin causar errores de concurrencia. Los errores de concurrencia mayormente ocurren cuando concurrentemente
+	se dan lecturas y escrituras sobre un recurso compartido, o si multiples writes toman lugar concurrentemente.
+	
+	Reglas:
+	------
+	
+		Las reglas por la cual un hilo es permitido bloquear son las siguientes:
+		
+		Read Lock: Si ningun hilo ha bloqueado el ReadWriteLock para escribir, y ningun hilo ha solicitado un write lock. Entonces, multiple hilos pueden bloquear el recurso para 
+					lectura.
+					
+		Write Lock: Si ningun hilo esta escribiendo o leyendo. Entonces, solo 1 hilo en un momento puede bloquear el recurso para escritura.
+		
+	Al ser ReadWriteLock una interface se usa la implementacion ReentrantReadWriteLock para instanciarla.
+	
+	Ejemplo:
+	
+	ReadWriteLock readWriteLock = new ReentrantReadWriteLock();
+
+
+	readWriteLock.readLock().lock();
+	
+	    // multiple readers can enter this section
+	    // if not locked for writing, and not writers waiting
+	    // to lock for writing.
+	
+	readWriteLock.readLock().unlock();
+	
+	
+	readWriteLock.writeLock().lock();
+	
+	    // only one writer can enter this section,
+	    // and only if no threads are currently reading.
+	
+	readWriteLock.writeLock().unlock();
+	
+	
+
+URLs:
+
+	[1] http://tutorials.jenkov.com/java-util-concurrent/readwritelock.html
+	[2] 
