@@ -59,6 +59,8 @@ public class Test {
 	}
 	
 	
-	
+	public void metodoIfPresent() {
+		Optional<Persona> op=Optional.ofNullable(null);
+	}
 	
 }
