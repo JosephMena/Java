@@ -1,5 +1,39 @@
 Future:
 ======
 
-API disponible desde Java 1.5, util para trabajar procesos asincronos y concurrencia.
+	API disponible desde Java 1.5, util para trabajar procesos asincronos y concurrencia.
+	
+	La clase Future representa un resultado futuro de una computacion asincrona, un resultado que eventualmente aparecera en el Future despues de que el procesamiento se a completado.
+	
+	Long running methos son buenos candidatos para procesamiento asincrono y la interface Future. Este nos permite a nosotros ejecutar algun otro proceso mientras estamos esperando
+	que la tarea encapsulada en Future sea completada.
+	
+	Algunos ejemplos de estos son:
+	
+		- Procesamiento computacional intensivo(matematicas)
+		- Manipulacion de grandes cantidades de informacion(big data)
+		- Invocaciones remotas.
+		
+	Para el ejemplo se va a crear una clase que calcule el cuadrado de un entero, esto no calza como long running pero se pondra un Thread.sleep para hacerlo que demore un poco mas
+	de lo normal.
+	
+	El uso de Future en el ejemplo esta asociado al ExecutorService.
+	
+	Ademas en este ejemplo se hace uso de los metodos isDone y get de la interface Future:
+	
+		- isDone, devuelve un booleano que indica si se tiene un resultado del procesamiento realizado en el ExecutorService, tener en cuenta que este metodo no es bloqueante.
+		- get, devuelve el resultado del procesamiento, este metodo si es bloqueante y se queda detenido hasta devolver el resultado.
+			Tambien se puede invocar a get con un parametro de tiempo, de tal forma que si se excede de ese tiempo lanze un time out excepction.
 
+	Dependiendo de lo que se busque(bloquear o no la ejecucion del programa principal) se puede usar isDone o get juntos.
+	
+	Cancel:
+	------
+		Ademas si por alguna razon hemos lanzado la ejecucion de una tarea y ya no necesitamos o queremos el resultado de ese procesamiento, pues podriamos cancelar la tarea y 
+		ahorrar CPU, para ello existe el metodo cancel en Future.
+
+
+URLs:
+----
+	[1] - https://www.baeldung.com/java-future
+	
