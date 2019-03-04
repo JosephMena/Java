@@ -1,0 +1,139 @@
+ReentrantLock:
+-------------
+	ReentrantLock es una clase del paquete java.util.concurrent.locks y nacio por necesidades no cubiertas por synchronized, como por ejemplo:
+	
+	1. Bloques no estructurados
+	2. Lock Polling
+	3. Interrumpible locks.
+	4. Fairness
+	5. Mejor respuesta a la escalabilidad.
+	
+	Se detallara a continuacion cada punto:
+	
+	Bloques no estructurados:
+	------------------------
+	
+		El uso de synchronized esta limitado a un bloque de codigo o metodo, eso limita de alguna forma la manera de programar Locks, de otra manera el uso de ReentrantLock permite
+		bloquear codigo a traves de varios metodos, por ejemplo:
+		
+		public void foo() {
+		  ...
+		  lock.lock();
+		  ...
+		}
+		
+		public void bar() {
+		  ...
+		  lock.unlock();
+		  ...
+		}
+	
+		Claro esta que el uso de esto debe ser analizado a detalle y se debe tener en consideracion todos los aspectos para no caer en deadlocks.
+	
+	Lock Polling:
+	------------
+		
+		O tambien llamado: Consulta de bloqueo. Se realiza mediante el metodo tryLock, el cual realiza una consulta si es posible bloquear o no, si es posible entonces lo bloquea.
+		Un caso muy util donde se puede utilizar este metodo es el siguiente:
+		
+		Digamos que tenemos el siguiente metodo con synchronized:
+		
+		public void transferMoneyWithSync(Account fromAccount, Account toAccount,float amount) throws InsufficientAmountException {
+			synchronized (fromAccount) {
+				// acquired lock on fromAccount Object
+				synchronized (toAccount) {
+					// acquired lock on toAccount Object
+					if (amount > fromAccount.getCurrentAmount()) {
+						throw new InsufficientAmountException("Insufficient Balance");
+					} else {
+						fromAccount.debit(amount);
+						toAccount.credit(amount);
+					}
+				}
+			}
+		} 
+	
+		Y se ejecuta el Hilo A y B al mismo tiempo:
+		
+		A: transferMoney(acc1, acc2, 20);
+		B: transferMoney(acc2, acc1 ,25);
+		
+		Si se hace el siguimiento de los hilos A y B te daras cuenta que ambos quedan bloqueados mutuamente (deadlock) sin forma de salir de la ejeucucion la unica solucion que quedaria seria
+		reiniciar el aplicativo.
+		
+		Para solucionar este tema se puede usar ReentrantLock de la siguiente forma:
+		
+		public boolean transferMoneyWithTryLock(Account fromAccount,Account toAccount, float amount) throws InsufficientAmountException, InterruptedException {
+
+			// we are defining a stopTime
+			long stopTime = System.nanoTime() + 5000;
+			while (true) {
+				if (fromAccount.lock.tryLock()) {
+					try {
+						if (toAccount.lock.tryLock()) {
+							try {
+								if (amount > fromAccount.getCurrentAmount()) {
+									throw new InsufficientAmountException(
+									"Insufficient Balance");
+								} else {
+									fromAccount.debit(amount);
+									toAccount.credit(amount);
+								}
+		
+							} finally {
+								toAccount.lock.unlock();
+							}
+						}
+		
+					} finally {
+						fromAccount.lock.unlock();
+					}
+				}
+				if(System.nanoTime() < stopTime)
+					return false;
+		
+				Thread.sleep(100);
+			}//while
+		}
+		
+		Si se ejecuta el Hilo A y B al mismo tiempo como en el caso anterior, ambos hilos no se bloquearan mutuamente pues el tryLock no realiza el bloqueo si no que consulta si previamente
+		ha sido bloqueado.
+		
+		Nota: este metodo retorna inmediatamente true si se produce el bloqueo para el hilo actual y false en caso contrario, ademas de ser true incrementa un contador interno.
+		
+	Interrumpible Locks:
+	-------------------
+		
+		
+		
+	
+	Fairness (Equidad):
+	------------------
+		
+		constructor: ReentrantLock(boolean fair));
+		
+		El constructor de ReentrantLock tiene como parametro un boolean que determina el comportamiento del lock, en ese sentido el true quiere decir que el bloqueo se dara con equidad sobre 
+		los hilos en espera y false dicta que no se dara con equidad. Con equidad quiere decir que cuando el recurso este bloqueado los hilos entrantes seran suspendidos y cuando este recurso
+		sea liberado se le dara oportunidad al hilo que fue suspendido primero, luego al segundo, tercero y asi, siguiendo el orden de llegada. Sin equidad quiere decir que no se respetara
+		el orden de suspension si no que se le dara la oportunidad al que pueda tomarlo mas rapido, por ejemplo si existen 10 suspendidos y justo entra otro hilo Z y se libera el recurso
+		la oportunidad se le dara al hilo Z pues es el que esta de alguna forma mas rapido a tomarlo.
+		
+		El uso de uno u otro repercute en la performance de la aplicacion pues es mas rapido el Reentrant sin equidad que con equidad. [3]
+		
+		
+	
+	Notas:
+	----
+	
+	 	- El metodo lock(): Si el bloqueo esta adquirido por otro hilo y el hilo actual ejecuta lock() entonces el hilo actual se duerme hasta que el bloqueo sea liberado, una vez liberado
+	 	  el hilo dormido adquiere el bloqueo.
+	 	  
+	 	  
+
+
+
+URLs:
+
+	[1] https://www.callicoder.com/java-locks-and-atomic-variables-tutorial/
+	[2] https://stackoverflow.com/questions/11821801/why-use-a-reentrantlock-if-one-can-use-synchronizedthis
+	[3] https://dzone.com/articles/what-are-reentrant-locks

@@ -17,7 +17,8 @@ public class Ejemplo03 {
 		ejemplo.metodoInvokeAny();
 	}
 
-	//En ese caso se ejecuta un Runnable, ademas para este caso no existe forma de obtener un resultado de la llamada de la operacion.
+	// En ese caso se ejecuta un Runnable, ademas para este caso no existe forma de obtener
+	// un resultado de la llamada de la operacion.
 	private void metodoExecute() {
 		ExecutorService executorService = Executors.newSingleThreadExecutor();
 		Runnable runnableTask = () -> {
@@ -33,7 +34,8 @@ public class Ejemplo03 {
 		executorService.shutdown();
 	}
 
-	//En este caso tambien se ejecuta un Runnable pero si devuelve un Future por medio del cual se puede obtener el resultado.
+	// En este caso tambien se ejecuta un Runnable pero si devuelve un Future por medio del 
+	// cual se puede obtener el resultado.
 	private void metodoSubmitRunnable() {
 		ExecutorService executorService = Executors.newSingleThreadExecutor();
 		

@@ -29,8 +29,6 @@ public class Test {
 		//test.operacionCollectToMapList();
 		//test.operacionCollectToMap();
 		//test.operacionCollectToMap2();
-		test.operacionReduce3();
-		//test.operacionReduce2();
 		//test.operacionSkip();
 		//test.operacionAllMatch();
 		//test.operacionAnyMatch();
@@ -128,34 +126,6 @@ public class Test {
 		flujo.findAny().ifPresent(System.out::println);		
 	}
 	
-	
-	//Esta operacion se realiza contra todos los elementos del stream y debe cumplir para todos ellos el Predicate, recien cuando todos cumplen se retorna true
-	private void operacionAllMatch() {
-		Stream<Integer> stream=lstNumeros.stream();
-		boolean sonMayoresQue100=stream.allMatch(n->n>100);
-		System.out.println("sonMayoresQue100:"+sonMayoresQue100);
-	}
-	
-	//Esta operacion retorna true si alguno de los elementos del stream cumple con el Predicate
-	private void operacionAnyMatch() {
-		Stream<String> flujo=Stream.of("Joseph","Mena","Sihuacollo","peruano");
-		boolean contienePeru=flujo.anyMatch(param->{return param.contains("peru");});
-		System.out.println(contienePeru);
-	}
-	
-	//Esta operacion retorna true  si ninguno de los elementos del stream cumple con el Predicate
-	private void operacionNoneMatch() {
-		Stream<String> flujo=Stream.of("Joseph","Mena","Sihuacollo","Cesar");
-		boolean contieneZ=flujo.noneMatch(nombre->{return nombre.contains("z");});
-		System.out.println("Ninguno contiene z? "+contieneZ);
-	}
-	
-	
-	
-	
-	
-	
-	
 	private void operacionCollectToList() {
 		Stream<String> flujo=Stream.of("Joseph","Mena","Sihuacollo","Paul");
 		List<String> lista=flujo.collect(Collectors.toList());
@@ -210,35 +180,7 @@ public class Test {
 		});
 	}
 	
-	//La operacion reduce admite como parametro una BiFunction, y es usada sobre operaciones que requieren combinar elementos y producir un nuevo valor.
-	//Ejemplos de esto son:
-	// - Encontrar el maximo valor de un conjunto de numeros
-	// - Sumar/Multiplicar todos los elementos de una lista
-	// - Concatenar cadenas
-	private void operacionReduce() {
-		Stream<String> flujo=Stream.of("Joseph","Pedro","Sihuacollo","Martin","Paul","Pantro");
-		flujo.reduce(
-					(n1,n2)->n1+","+n2
-				)
-			 .ifPresent(System.out::println);;
-	}
-	
-	//En este ejemplo se encuentra el maximo valor
-	private void operacionReduce2() {
-		IntStream flujo=Arrays.stream(new int[] {1,4,6,8,2,20,6,10});
-		flujo.reduce(
-				(n1,n2)->{return n1>n2?n1:n2;}
-				)
-			 .ifPresent(System.out::println);;
-	}
-	
-	//En este ejemplo se encuentra el maximo valor
-	private void operacionReduce3() {
-		Stream<Integer> flujo=lstNumeros.stream();
-		flujo.reduce(Integer::max).ifPresent(System.out::println);;
-	}
-	
-	
+
 }
 
 
