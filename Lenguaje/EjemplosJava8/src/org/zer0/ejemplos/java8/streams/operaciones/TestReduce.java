@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
-import org.zer0.ejemplos.java8.streams.Test;
+import org.zer0.ejemplos.java8.streams.TestBasic;
 
 public class TestReduce{ 
 

@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
-import org.zer0.ejemplos.java8.streams.Test;
+import org.zer0.ejemplos.java8.streams.TestBasic;
 
 public class TestMatch {
 
@@ -32,7 +32,7 @@ public class TestMatch {
 	}
 	
 	public static void main(String[] args) {
-		Test test=new Test();
+		TestBasic test=new TestBasic();
 		//test.operacionAllMatch();
 		//test.operacionAnyMatch();
 		//test.operacionNoneMatch();
